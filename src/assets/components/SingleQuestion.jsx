@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { BiPlus, BiMinus } from 'react-icons/bi'
-const SingleQuestion = ({ title, info }) => {
-  const [isShow, setIsShow] = useState(false)
+const SingleQuestion = ({ id, title, info, toggleAwsner, isActiveId }) => {
+  //   const [isShow, setIsShow] = useState(false)
+  const isActive = isActiveId === id
   return (
     <article className="question">
       <header>
@@ -10,17 +11,17 @@ const SingleQuestion = ({ title, info }) => {
           type="button"
           className="question-btn"
           onClick={() => {
-            setIsShow(!isShow)
+            toggleAwsner(id)
           }}
         >
-          {isShow ? (
+          {isActive ? (
             <BiMinus style={{ width: '1em' }} />
           ) : (
             <BiPlus style={{ width: '1em' }} />
           )}
         </button>
       </header>
-      {isShow ? <p>{info}</p> : ''}
+      {isActive ? <p>{info}</p> : ''}
     </article>
   )
 }
